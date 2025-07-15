@@ -1,4 +1,4 @@
-Anime-Or-Not (AoN) — Docker Quickstart
+# Anime-Or-Not (AoN) — Docker Quickstart
 
 
 
@@ -12,18 +12,18 @@ Prerequisites
 •	The resnet50-0676ba61.pth checkpoint file placed in the project root
 •	A sample image for testing (e.g., test_images/test_cartoon.jpg)
 ________________________________________
-1. Build the Docker Image
+# 1. Build the Docker Image
 From your project root (where Dockerfile lives), run:
 docker build -t aon-api .
 
 ________________________________________
-2. Run the Docker Container
-# Run in detached mode, name it "aon-container", map port 8000 -> 80
+# 2. Run the Docker Container
+Run in detached mode, name it "aon-container", map port 8000 -> 80
 
 docker run -d --name aon-container -p 8000:80 aon-api
 
 ________________________________________
-3. Verify the Service
+# 3. Verify the Service
 Health Check
 curl http://localhost:8000/health
 Expected response:
@@ -45,10 +45,10 @@ Sample response:
 •	Change the path (test_images/test_cartoon.jpg) to any image you want to classify.
 
 ________________________________________
-4. Stop & Clean Up
-# Stop the container
+# 4. Stop & Clean Up
+Stop the container:
 docker stop aon-container
 
-# Remove the container
+Remove the container:
 docker rm aon-container
 
