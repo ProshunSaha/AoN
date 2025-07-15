@@ -32,12 +32,14 @@ ________________________________________
 Image Classification
 Use curl to POST an image and receive a JSON prediction.
 
-Linux / macOS
+Linux / macOS:
+
 curl -X POST \
   -F "file=@test_images/test_cartoon.jpg;type=image/jpeg" \
   http://localhost:8000/predict
 
-Windows PowerShell / CMD
+Windows PowerShell / CMD:
+
 curl -X POST -F "file=@test_images/test_cartoon.jpg;type=image/jpeg" localhost:8000/predict
 
 Sample response:
@@ -47,8 +49,10 @@ Sample response:
 ________________________________________
 # 4. Stop & Clean Up
 Stop the container:
+
 docker stop aon-container
 
 Remove the container:
+
 docker rm aon-container
 
