@@ -4,17 +4,17 @@ import torch
 import torch.nn as nn
 from PIL import Image
 
-# 1) Build the *full* ResNet (with 1000-way head)
-model = resnet50(weights=ResNet50_Weights.IMAGENET1K_V1)
-
-# 2) Load checkpoint into a dict
-state = torch.load('resnet50-0676ba61.pth', map_location='cpu')
-
-model.load_state_dict(state)
-
-# 3) Now swap in your 2-way head
+# 1) Build the backbone AND immediately swap in a 2-way head
+model = resnet50(weights=None)
 model.fc = nn.Linear(model.fc.in_features, 2)
 
+# 2) Load your fine-tuned 2-way checkpoint
+state = torch.load('checkpoints/resnet50_anime_vs_cartoon.pth', map_location='cpu')
+model.load_state_dict(state)
+
+
+
+# 3) Set eval mode
 model.eval()
 
 
@@ -25,7 +25,8 @@ model.eval()
 #Preprocessing pipeline
 
 preprocess = transforms.Compose([
-    transforms.Resize((224, 224)),
+    transforms.Resize(256),
+    transforms.CenterCrop(224),
     transforms.ToTensor(),
     transforms.Normalize(
         mean=[0.485, 0.456, 0.406],
