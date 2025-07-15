@@ -5,3 +5,6 @@ torchvision
 pillow
 loguru
 pytest
+numpy<2.2.0
+python-multipart
+httpx
