@@ -1,1 +1,1 @@
-Hello World
+curl -X POST -F "file=@test_images/test_cartoon.jpg;type=image/jpeg" localhost/predict
